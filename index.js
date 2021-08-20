@@ -31,11 +31,11 @@ myFunction();
     
 For example, `summation(4)` should return 10 because 1+2+3+4 is 10. Note, you may use a for loop for this function if you wish */
 
-function summation(x) {
+function summation(number) {
   let sum = 0; //if statment needs an initial
 
-  for(let i=0; i < x; i++){
-    sum = sum + [i];
+  for(let i=0; i < number + 1; i++){
+    sum = sum + i;
   }
   return sum;
 }
