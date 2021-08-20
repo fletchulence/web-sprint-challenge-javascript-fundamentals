@@ -26,13 +26,42 @@ Edit this document to include your answers after each question. Make sure to lea
 
 1. Explain the differences between `.map`, `.reduce` and `.filter` and describe a use case for each. 
 
+I feel like in our class we mostly used 
+
+    - .map() is used for iterating thru a whole dataset and altering each part as needed. For example, if you need to update information in an array by adding 10 to everything (for some reason), but you didnt want to alter the previous data in any way, you could use the map function to auto-populate a new array with your new values. Also, .map() creates a newArray automatically, and doesnt change anything from the oldArray.
+
+    - .filter is strictly for true and false values. If result yeilds true, filter will include it in the new array. If the result is false, filter will leave it out altogether. Say for example you want to go to a vacation spot that has a beach and you want to learn a new language other than english while you are there and be immersed in the culture. You would use .filter and pass in beachOptions and englishSpeaking as arguments in a boolean return statment (beachOptions && !englishSpeaking). 
+    .filter also creates a newArray automatically, and doesnt change anything from the oldArray.
+
+    - .reduce, unlike the others above, is used to produce a SINGLE VALUE from the information of the array in question - meaning that it does not populate a new array on its own, and if you need to push this value to an array you will need to do so manually. 
+    The use case for reduce is for addition/multiplication as it has what is reffered to as an accumulator as a parameter. This accumulator keeps track of all the data in the array and either adds or multiplies the data to produce the final value. It also has an initial value input which is how we are able to dictate where to begin our count. Usually we use 1 if we are multiplying and 0 if we are adding(...cant use zero for multiplying bc then you would just get 0...).
+
 2. Explain the difference between a callback and a higher order function.
+
+please reference [(/Users/davidfletcher/Desktop/web-sprint-challenge-javascript-fundamentals/index.js)]
+
+ simply put:
+    - callback is a function that gets passed INTO another function as an attribute
+    - higherOrder functions are functions which accept callback functions as arguments
+
+    Basically, the idea is that the higher order function will 
 
 3. Explain what a closure is.
 
+    Closure is similar to what's happening in task 1! I can go into more detail though... Closure is the description of a function that
+
 4. Describe the four principles of the 'this' keyword.
 
+    1. explicit -
+    2. implicit -
+    3. window - 
+    4. new -
+
 5. Why do we need super() in an extended class?
+
+    super() is used in Child classes. It is used as a replacement in ES6 which made classes (in my opinon) way easier to work with. It references the attributes that come from the Parent, just like .call does for prototypes
+
+    the super() call is going to set all of the parent's properties onto it's child
 
 You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade. 
 

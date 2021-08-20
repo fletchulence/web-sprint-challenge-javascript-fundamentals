@@ -22,12 +22,11 @@ myFunction();
 //🚀🚀🚀 ⬇️ 📝 Explanation ⬇️ 📝 🚀🚀🚀: 
 
 /*  LETS DO THIS 
-functions are defined with what's called scope. Function scope is very specific in that functions can reach outward to the currounding information, HOWEVER they can not reach inward. 
-So the question becomes, what's happening here?? Why is it that "Hello! I'm inside myFunction!" was able to print? Well it all depends on function invocation versus definintion. Here, in myFunction, internal is being defined as the string "Hello! I'm inside myFunction!", but it is not invoked until nestedFunction. And since nestedFunction is WITHIN myFunction, nestedFunction reaches OURTWARD for where the parameter is DEFINED. If on the other hand "internal" was defined within nestedFunction like commented above, it wouldn't need to reach outside itself and the string "I'm inside the inside of nestedFunction" would print.
+  Functions are defined with what's called scope. Function scope is very specific in that functions can reach outward to the currounding information, HOWEVER they can not reach inward. 
+  So the question becomes, what's happening here?? Why is it that "Hello! I'm inside myFunction!" was able to print? Well it all depends on function invocation versus definintion. Here, in myFunction, internal is being defined as the string "Hello! I'm inside myFunction!", but it is not invoked until nestedFunction. And since nestedFunction is WITHIN myFunction, nestedFunction reaches OURTWARD for where the parameter is DEFINED. If on the other hand "internal" was defined within nestedFunction like commented above, it wouldn't need to reach outside itself and the string "I'm inside the inside of nestedFunction" would print.
 
-READ OVER AND PROBABLY WORK IN SCOPE
+******* i talk about this more in question 3 of './README.md' *********
     */
-
 
 
 /* 🚀🚀🚀 Task 2: Counter 🚀🚀🚀 */
@@ -46,6 +45,8 @@ function summation(number) {
   return sum;
 }
 console.log(summation(7));
+
+//we could also use .reduce here after populating an array of numbers based on a for loop pushed into it, no?
 
 
 // 🦁🦁🦁 Topic 2: ADVANCED Array Methods 🦁🦁🦁
@@ -92,7 +93,7 @@ const zooAnimals = [
     });
     return lowercase;
   }
-  console.log(lowerCaseNames(zooAnimals))
+  console.log(lowerCaseNames(zooAnimals));
   
   
   /* 🦁🦁🦁 Request 3: .filter() 🦁🦁🦁
@@ -132,7 +133,7 @@ console.log(USApop(zooAnimals));
     * The consume function should return the invocation of cb, passing a and b into cb as arguments
   */
 
-  function consume(a, b, callback/*Your Code Here */){
+  function consume(a, b, callback){//(for reference param1, param2, param3) - "callback" will be placeholder for function name later to come in as an argument */
     return callback (a, b);
   }
  
@@ -162,7 +163,7 @@ function greeting(a, b){ //function greeting will be initiated later at the cons
   // 🦁🦁🦁 Step 3: Check your work by un-commenting the following calls to consume(): 🦁🦁🦁 
   // ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️
 
-  /* this is where the callbacks kick in. we have madde the callback function on top "return callback(a,b)" now we can pass in multiple functions as a final parameter and it will run as if they were made for eachother! didnt have to change my variables at all! so long as the params are in the right place (which only mattered for mary poppins) they are good to go! really cool */
+  /* Down here is where the callbacks kick in. We have made the callback function on top "return callback(a, b)", and set our "consume" function to take a callback as a parameter (in this case param3). Now when we invoke the function we can pass in any function we want as a an argument and it will run as if they were made for eachother! didnt have to change my variables at all! so long as the params are in the right place (which only mattered for mary poppins) they are good to go! really cool */
   
   console.log(consume(2, 2, add)); // 4  /* this is where the callbacks kick in CHECK */
   console.log(consume(10, 16, multiply)); // 160 YES
@@ -173,7 +174,7 @@ function greeting(a, b){ //function greeting will be initiated later at the cons
 /* 🐴🐴🐴 Step 1: Base Constructor 🐴🐴🐴
  Use the constructor function named CuboidMaker to accept properties for length, width, and height which can be initialized as an object
 */
-function CuboidMaker(attrs){
+function CuboidMaker(attrs){ //using "attrs" so that any other sized cube (with different dims) can be passed in (well really anyting that uses L W and H for dims measurments can be passed in)
   this.length = attrs.length;
   this.width = attrs.width;
   this.height = attrs.height;
@@ -221,7 +222,7 @@ console.log(cuboid.surfaceArea()); // 130
 // 🦄🦄🦄 Topic 4: Classes 🦄🦄🦄 //
 //🦄🦄🦄 1. Take your prototypes from above and refactor into class syntax. Please rename your class CuboidMakerTwo and your object cuboidTwo 🦄🦄🦄
 class CuboidMakerTwo{
-  constructor(attrs){
+  constructor(attrs){ //using "attrs" so that any new obj can be passed in and used
     this.length = attrs.length;
     this.width = attrs.width;
     this.height = attrs.height;
@@ -237,7 +238,8 @@ const cuboidTwo = new CuboidMakerTwo({
   length: 4,
   width: 5,
   height: 5
-})
+});
+
 
 //🦄🦄🦄 Test your volume and surfaceArea methods by uncommenting the logs below: 🦄🦄🦄
 console.log(cuboidTwo.volume()); // 100
