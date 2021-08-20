@@ -2,7 +2,7 @@
 /* 🚀🚀🚀🤓 Task 1: 🤓🚀🚀🚀 
 Study the code below and explain in your own words why nested function can access the variable internal. */
 
-/* 
+
 const external = "I'm outside the function";
 
 function myFunction() {
@@ -10,16 +10,21 @@ function myFunction() {
   const internal = "Hello! I'm inside myFunction!";
 
   function nestedFunction() {
+    const internal = "I'm inside the inside of the function";
     console.log(internal);
+    //
   }
   nestedFunction();
 }
 myFunction();
- */
+
 
 //🚀🚀🚀 ⬇️ 📝 Explanation ⬇️ 📝 🚀🚀🚀: 
 
 /*  LETS DO THIS 
+functions are defined with what's called scope. Function scope is very specific in that functions can reach outward to the currounding information, HOWEVER they can not reach inward. 
+So the question becomes, what's happening here?? Why is it that "Hello! I'm inside myFunction!" was able to print? Well it all depends on function invocation versus definintion. Here, in myFunction, internal is being defined as the string "Hello! I'm inside myFunction!", but it is not invoked until nestedFunction. And since nestedFunction is WITHIN myFunction, nestedFunction reaches OURTWARD for where the parameter is DEFINED. if on the 
+why does the internal function print
     */
 
 
@@ -96,7 +101,7 @@ const zooAnimals = [
 
   function lowPopulationAnimals(array){
     const popLow = array.filter(function(item){
-      return item.population < 5; //less than 5 not 5 or less $good$
+      return item.population < 5; //less than 5, not 5 or less $good$
     });
     return popLow;
   }
@@ -193,8 +198,6 @@ CuboidMaker.prototype.volume = function(){
 CuboidMaker.prototype.surfaceArea = function(){
   return 2 * (this.length * this.width + this.length * this.height + this.width * this.height);
 }
-
-
 
 
 /* 🐴🐴🐴 Step 4: Create a new object that uses CuboidMaker 🐴🐴🐴
