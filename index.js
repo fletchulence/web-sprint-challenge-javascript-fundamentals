@@ -10,7 +10,7 @@ function myFunction() {
   const internal = "Hello! I'm inside myFunction!";
 
   function nestedFunction() {
-    const internal = "I'm inside the inside of the function";
+    //const internal = "I'm inside the inside of nestedFunction"; /* used for example */
     console.log(internal);
     //
   }
@@ -23,8 +23,9 @@ myFunction();
 
 /*  LETS DO THIS 
 functions are defined with what's called scope. Function scope is very specific in that functions can reach outward to the currounding information, HOWEVER they can not reach inward. 
-So the question becomes, what's happening here?? Why is it that "Hello! I'm inside myFunction!" was able to print? Well it all depends on function invocation versus definintion. Here, in myFunction, internal is being defined as the string "Hello! I'm inside myFunction!", but it is not invoked until nestedFunction. And since nestedFunction is WITHIN myFunction, nestedFunction reaches OURTWARD for where the parameter is DEFINED. if on the 
-why does the internal function print
+So the question becomes, what's happening here?? Why is it that "Hello! I'm inside myFunction!" was able to print? Well it all depends on function invocation versus definintion. Here, in myFunction, internal is being defined as the string "Hello! I'm inside myFunction!", but it is not invoked until nestedFunction. And since nestedFunction is WITHIN myFunction, nestedFunction reaches OURTWARD for where the parameter is DEFINED. If on the other hand "internal" was defined within nestedFunction like commented above, it wouldn't need to reach outside itself and the string "I'm inside the inside of nestedFunction" would print.
+
+READ OVER AND PROBABLY WORK IN SCOPE
     */
 
 
