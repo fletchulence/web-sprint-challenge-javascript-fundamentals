@@ -26,13 +26,46 @@ Edit this document to include your answers after each question. Make sure to lea
 
 1. Explain the differences between `.map`, `.reduce` and `.filter` and describe a use case for each. 
 
+    - .map() is used for iterating through a whole dataset and altering each part as needed. For example, if you need to update information in an array by adding 10 to everything (for whatever reason), but you didnt want to alter the previous data in any way, you could use the .map function to auto-populate a newArray with the altered values from your oldArray. Also, .map() creates a newArray automatically, so you dont need to push anything into an empty array [].
+
+    - .filter is used for true and false values. If your returnstatement yeilds true, filter will include it in the new array. If the result is false, filter will leave it out altogether. Say for example, you want to exclude people under the age of 18 from being able to vote. If you have given names and ages in an array, set the return statement to years > 18, and .filter will only include the people who are over the legal age to vote.
+    .filter also creates a newArray automatically, and doesnt change anything from the oldArray.
+
+    - .reduce, unlike the others above, is used to produce a SINGLE VALUE from the information of the array in question. This also means that if you wanted to use the information as a newArray, you would need to push your value into the newArray manually - it doesnt do it automatically. You might use this for a population! Say you wanted to make an array of global population of animals, and you were given arrays of information on animalPerCountry!
+    The use case for reduce is mostly for addition/multiplication of array dataset as it has, what is reffered to as, an 'accumulator' parameter. This accumulator keeps track of all the data in the array and either adds or multiplies the data to produce the final value. It also has an initial value input which is how we are able to dictate where to begin our count. Usually we use 1 if we are multiplying and 0 if we are adding(...cant use zero for multiplying bc then you would just get 0...).
+
 2. Explain the difference between a callback and a higher order function.
+
+
+
+ simply put:
+    - callback is a function that gets passed INTO another function as an attribute
+    - higherOrder functions are functions which accept callback functions as arguments
+
+    Basically the idea is that the Higher Order function, when invoked, will have a function passed in as an argument. The use cases for this are pretty much endless, but the part to take away is that you can reuse the callback functions however you want in however many higher order functions as you wish! So if you would like a function to act on many peices and places in your code, you can use callbacks to achieve this.
+
+    please reference ['/index.js'] 'Callbacks (step 3)' for more info
+
 
 3. Explain what a closure is.
 
+    Closure is what's happening in task 1 in the [./index.js] file! Closure is the combination of a function bundled with references to its lexical (surrounding) environment. In real terms, closure as a concept is incredibly important because they control what is and isn't in scope (OOP and functionality purposes mainly). 
+    Instead of repeating what I mentioned in Task 1 in the [./index.js] file, I would like to talk about what closure can do for us. I read an article about how closure is used as the main concept for data privacy. WHICH MAKES SENSE!!! As mentioned before, in the js file it is the underlying concept of the one way scope of a function (cannot reach into another function - functions can only reach outward from their scope). When you use closures for data privacy, the enclosed variables are only accessible through the object's "privelaged" methods. Basically, you can have a 'secret' variable within your object which can only be read and accessed by THAT function. Nobody else can access within. 
+    Pretty cool!
+
+
 4. Describe the four principles of the 'this' keyword.
 
+    1. Implicit Binding - applies, but not limited, to objects that have methods. When a function is invoked, you look to the left of the dot (object.method) to see what "this" is bound to
+    2. New Binding - in cases where we are making new objects with constructor functions, "this" is bound to the specific instance of the object in which it is created and immediately retuned 
+    3. Window Binding - window binding is when "this" is defined on the global scope, so it automatically binds itself to the window as it is trying to find something to attach itself to. Really window binding is just a fancy word for "you will [probably] get an error"
+    4. Explicit Binding - these cases of "this" are when we use the methods call() or apply() or bind(). These methods allow you to EXPLICITLY set the context of what "this" refers to as it gets laid out deliberately.
+
 5. Why do we need super() in an extended class?
+
+    super() is used in the construction of Child objects using Class syntax which is new to the most recent edition of javascript ES6 . It is used as a replacement to the .call and prototypes which made classes (in my opinon) way easier to work with. It references the attributes that come from the Parent, just like .call, and links them directly to the subclass. I think it's way easier to view for sure. 
+
+    the super() call is going to set all of the parent's properties onto it's child.
 
 You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade. 
 

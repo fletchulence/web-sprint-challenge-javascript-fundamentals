@@ -2,23 +2,32 @@
 /* 🚀🚀🚀🤓 Task 1: 🤓🚀🚀🚀 
 Study the code below and explain in your own words why nested function can access the variable internal. */
 
+
 const external = "I'm outside the function";
 
 function myFunction() {
   console.log(external);
-  const internal = "Hello! I'm inside myFunction!";
+  const internal = "Hello! I'm inside myFunction!"; //in my example this is switched with the below comment
+  //console.log(internal);
 
   function nestedFunction() {
+    //const internal = "I'm inside the inside of nestedFunction"; /* used for example */
     console.log(internal);
   }
   nestedFunction();
 }
 myFunction();
 
+
 //🚀🚀🚀 ⬇️ 📝 Explanation ⬇️ 📝 🚀🚀🚀: 
 
+/*  LETS DO THIS 
+  Functions are defined with what's called scope and closure. Closure is very specific in that functions can reach outward from it's own scope to the surrounding information, HOWEVER they can not reach inward. Scope is a larger discussion but basically, it is defined by the way in which funcitons, blocks, and variable declarations relate to one another in your code.
+  So the question becomes, what's happening here?? Why is it that "Hello! I'm inside myFunction!" was able to print? Well, it all depends on where a function is being defined. Here, in nestedFunction, there is no definition of the variable 'internal'. In fact, 'internal' is being defined as the string "Hello! I'm inside myFunction!" outside of it's scope. Since functions reach outward and nestedFunction is WITHIN myFunction, nestedFunction reaches for where the parameter is DEFINED. 
+  If on the other hand "internal" was defined within nestedFunction and invoked outside of it's scope (like commented above), we would recieve an error that internal is not defined. Again, a function cannot reach into another function - functions can only reach outward from their scope.
 
-
+******* I talk about this more in question 3 of './README.md' *********
+    */
 
 
 /* 🚀🚀🚀 Task 2: Counter 🚀🚀🚀 */
@@ -28,11 +37,18 @@ myFunction();
     
 For example, `summation(4)` should return 10 because 1+2+3+4 is 10. Note, you may use a for loop for this function if you wish */
 
-function summation(/*Your Code Here*/) {
-  /*Your Code Here*/
+function summation(number) {
+  let sum = 0; //if statment needs an initial
 
+  for(let i=0; i < number + 1; i++){
+    sum = sum + i;
   }
- 
+  return sum;
+}
+console.log(summation(7));
+
+//we could also use .reduce here after populating an array of numbers based on a for loop pushed into it, no?
+
 
 // 🦁🦁🦁 Topic 2: ADVANCED Array Methods 🦁🦁🦁
 // Given this zoo data from around the United States, follow the instructions below. Use the specific array methods in the requests below to solve the problems.
@@ -51,14 +67,19 @@ const zooAnimals = [
   ];
   
   /* 🦁🦁🦁 Request 1: .forEach() 🦁🦁🦁
-  The zoos want to display both the scientific name and the animal name in front of the habitats. 
+  The zoos wants to display both the scientific name and the animal name in front of the habitats. 
   Use animalNames to populate and return the displayNames array with only the animal name and scientific name of each animal. 
   displayNames will be an array of strings, and each string should follow this pattern: "name: {name}, scientific: {scientific name}"
   */
 
-  function animalNames(/*Your Code Here*/){
-    /*Your Code Here*/
+  function animalNames(array){
+    let displayNames = []; //display names to equal empty array ready for population
+    array.forEach(function(item){
+      return displayNames.push(`name: ${item.animal_name}, scientific: ${item.scientific_name}`);
+    });
+    return displayNames;
   }
+  console.log(animalNames(zooAnimals))
   
 
   /* 🦁🦁🦁 Request 2: .map() 🦁🦁🦁
@@ -67,9 +88,13 @@ const zooAnimals = [
   For example: ['jackal, asiatic', .....]
   */
 
-  function lowerCaseNames(/*Your Code Here*/){
-    /*Your Code Here*/
+  function lowerCaseNames(array){
+    const lowercase = array.map(function(item){
+      return item.animal_name.toLowerCase()
+    });
+    return lowercase;
   }
+  console.log(lowerCaseNames(zooAnimals));
   
   
   /* 🦁🦁🦁 Request 3: .filter() 🦁🦁🦁
@@ -77,9 +102,13 @@ const zooAnimals = [
   Using lowPopulationAnimals use .filter() to create a new array of objects which contains only the animals with a population of less than 5.
   */
 
-  function lowPopulationAnimals(/*Your Code Here*/){
-    /*Your Code Here*/
+  function lowPopulationAnimals(array){
+    const popLow = array.filter(function(item){
+      return item.population < 5; //less than 5, not 5 or less $good$
+    });
+    return popLow;
   }
+  console.log(lowPopulationAnimals(zooAnimals));
   
 
   /* 🦁🦁🦁 Request 4: .reduce() 🦁🦁🦁
@@ -88,9 +117,13 @@ const zooAnimals = [
   Remember the reduce method takes two arguments: a callback (which itself takes two args - the accumulator and the item), and an initial value for the count.
   */
 
-  function USApop(/*Your Code Here*/){
-    /*Your Code Here*/
+  function USApop(array){
+    const totalAnimalPop = array.reduce(function(acc, item){
+      return acc + item.population; //looking at the population specifically within the objects in the array
+    }, 0); //zero bc we will be adding all animals together
+    return totalAnimalPop;
   }
+console.log(USApop(zooAnimals));
   
   
   // 🦁🦁🦁 Callbacks 🦁🦁🦁  
@@ -101,46 +134,51 @@ const zooAnimals = [
     * The consume function should return the invocation of cb, passing a and b into cb as arguments
   */
 
-  function consume(/*Your Code Here */){
-    /*Your Code Here */
+  function consume(a, b, callback){//(for reference param1, param2, param3) - "callback" will be placeholder for function name later to come in as an argument */
+    return callback (a, b);
   }
  
   
   /* 🦁🦁🦁 Step 2: Create several functions to callback with consume(); 🦁🦁🦁 */
  // 🦁🦁🦁 Use add to return the sum of two numbers 🦁🦁🦁
   
-function add(/*Your Code Here */){
-    /*Your Code Here*/
+function add(a, b){ //function add will be initiated later at the console.log
+    return (a + b);
   }
 
 
 // 🦁🦁🦁 Use multiply to return the product of two numbers 🦁🦁🦁
   
-function multiply(/*Your Code Here */){
-   /*Your Code Here */
+function multiply(a, b){ //function multiply will be initiated later at the console.log
+   return (a * b);
   }
 
 
  // 🦁🦁🦁 Use greeting to accept a first and last name and return "Hello {first-name} {last-name}, nice to meet you!" 🦁🦁🦁
   
-function greeting(/*Your Code Here */){
-   return /*Your Code Here */
+function greeting(a, b){ //function greeting will be initiated later at the console.log
+   return `Hello ${a} ${b}, nice to meet you!`;
   }
   
   
   // 🦁🦁🦁 Step 3: Check your work by un-commenting the following calls to consume(): 🦁🦁🦁 
   // ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️
-  // console.log(consume(2, 2, add)); // 4
-  // console.log(consume(10, 16, multiply)); // 160
-  // console.log(consume("Mary", "Poppins", greeting)); // Hello Mary Poppins, nice to meet you!
+
+        /* ref to ['./readme.md' question 2] Down here is where the callbacks kick in. We have made the callback function on top "return callback(a, b)", and set our "consume" function to take a callback as a parameter (in this case param3). Now when we invoke the function we can pass in any function we want as a an argument and it will run as if they were made for eachother! didnt have to change my variables at all! so long as the params are in the right place (which only mattered for mary poppins) they are good to go! really cool */
+  
+  console.log(consume(2, 2, add)); // 4  /* this is where the callbacks kick in CHECK */
+  console.log(consume(10, 16, multiply)); // 160 YES
+  console.log(consume("Mary", "Poppins", greeting)); // Hello Mary Poppins, nice to meet you! DID IT
 
 // 🐴🐴🐴 Topic 3: Prototypes 🐴🐴🐴 //
 //🐴🐴🐴 Task: You are to build a cuboid maker that can return values for a cuboid's volume or surface area. Cuboids are similar to cubes but do not have even sides. Follow the steps in order to accomplish this challenge. 🐴🐴🐴
 /* 🐴🐴🐴 Step 1: Base Constructor 🐴🐴🐴
  Use the constructor function named CuboidMaker to accept properties for length, width, and height which can be initialized as an object
 */
-function CuboidMaker(/*Your Code Here */){
-  /*Your Code Here */
+function CuboidMaker(attrs){ //using "attrs" so that any other sized cube (with different dims) can be passed in (well really anyting that uses L W and H for dims measurments can be passed in)
+  this.length = attrs.length;
+  this.width = attrs.width;
+  this.height = attrs.height;
 }
 
 
@@ -148,7 +186,9 @@ function CuboidMaker(/*Your Code Here */){
   Create a method called volume using CuboidMaker's prototype that returns the volume of a given cuboid's length, width, and height
   Formula for cuboid volume: length * width * height   */
 
-
+CuboidMaker.prototype.volume = function(){
+  return this.length * this.width * this.height;
+}
 
 
 
@@ -158,33 +198,53 @@ function CuboidMaker(/*Your Code Here */){
   2 * (length * width + length * height + width * height)  */
 
 
-
+CuboidMaker.prototype.surfaceArea = function(){
+  return 2 * (this.length * this.width + this.length * this.height + this.width * this.height);
+}
 
 
 /* 🐴🐴🐴 Step 4: Create a new object that uses CuboidMaker 🐴🐴🐴
   Create an object called cuboid that uses the new keyword to use our CuboidMaker constructor
   Add properties and values of length: 4, width: 5, and height: 5 to cuboid. */
 
-
-
+const cuboid = new CuboidMaker ({
+  length: 4,
+  width: 5,
+  height: 5
+});
 
 
 // 🐴🐴🐴 Test your volume and surfaceArea methods by uncommenting the logs below: 🐴🐴🐴
 // ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️
-// console.log(cuboid.volume()); // 100
-// console.log(cuboid.surfaceArea()); // 130
+console.log(cuboid.volume()); // 100
+console.log(cuboid.surfaceArea()); // 130
  
 
 // 🦄🦄🦄 Topic 4: Classes 🦄🦄🦄 //
 //🦄🦄🦄 1. Take your prototypes from above and refactor into class syntax. Please rename your class CuboidMakerTwo and your object cuboidTwo 🦄🦄🦄
 class CuboidMakerTwo{
-
+  constructor(attrs){ //using "attrs" so that any new obj can be passed in and used
+    this.length = attrs.length;
+    this.width = attrs.width;
+    this.height = attrs.height;
+  }
+  volume(){
+    return this.length * this.width * this.height;
+  }
+  surfaceArea(){
+    return 2 * (this.length * this.width + this.length * this.height + this.width * this.height);
+  }
 }
+const cuboidTwo = new CuboidMakerTwo({
+  length: 4,
+  width: 5,
+  height: 5
+});
 
 
 //🦄🦄🦄 Test your volume and surfaceArea methods by uncommenting the logs below: 🦄🦄🦄
-// console.log(cuboidTwo.volume()); // 100
-// console.log(cuboidTwo.surfaceArea()); // 130
+console.log(cuboidTwo.volume()); // 100
+console.log(cuboidTwo.surfaceArea()); // 130
 
 
 
