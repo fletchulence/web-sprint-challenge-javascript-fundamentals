@@ -7,12 +7,12 @@ const external = "I'm outside the function";
 
 function myFunction() {
   console.log(external);
-  const internal = "Hello! I'm inside myFunction!";
+  const internal = "Hello! I'm inside myFunction!"; //in my example this is switched with the below comment
+  //console.log(internal);
 
   function nestedFunction() {
     //const internal = "I'm inside the inside of nestedFunction"; /* used for example */
     console.log(internal);
-    //
   }
   nestedFunction();
 }
@@ -22,10 +22,11 @@ myFunction();
 //🚀🚀🚀 ⬇️ 📝 Explanation ⬇️ 📝 🚀🚀🚀: 
 
 /*  LETS DO THIS 
-  Functions are defined with what's called scope. Function scope is very specific in that functions can reach outward to the currounding information, HOWEVER they can not reach inward. 
-  So the question becomes, what's happening here?? Why is it that "Hello! I'm inside myFunction!" was able to print? Well it all depends on function invocation versus definintion. Here, in myFunction, internal is being defined as the string "Hello! I'm inside myFunction!", but it is not invoked until nestedFunction. And since nestedFunction is WITHIN myFunction, nestedFunction reaches OURTWARD for where the parameter is DEFINED. If on the other hand "internal" was defined within nestedFunction like commented above, it wouldn't need to reach outside itself and the string "I'm inside the inside of nestedFunction" would print.
+  Functions are defined with what's called scope and closure. Closure is very specific in that functions can reach outward from it's own scope to the surrounding information, HOWEVER they can not reach inward. Scope is a larger discussion but basically, it is defined by the way in which funcitons, blocks, and variable declarations relate to one another in your code.
+  So the question becomes, what's happening here?? Why is it that "Hello! I'm inside myFunction!" was able to print? Well, it all depends on where a function is being defined. Here, in nestedFunction, there is no definition of the variable 'internal'. In fact, 'internal' is being defined as the string "Hello! I'm inside myFunction!" outside of it's scope. Since functions reach outward and nestedFunction is WITHIN myFunction, nestedFunction reaches for where the parameter is DEFINED. 
+  If on the other hand "internal" was defined within nestedFunction and invoked outside of it's scope (like commented above), we would recieve an error that internal is not defined. Again, a function cannot reach into another function - functions can only reach outward from their scope.
 
-******* i talk about this more in question 3 of './README.md' *********
+******* I talk about this more in question 3 of './README.md' *********
     */
 
 
@@ -163,7 +164,7 @@ function greeting(a, b){ //function greeting will be initiated later at the cons
   // 🦁🦁🦁 Step 3: Check your work by un-commenting the following calls to consume(): 🦁🦁🦁 
   // ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️ ⬇️
 
-  /* Down here is where the callbacks kick in. We have made the callback function on top "return callback(a, b)", and set our "consume" function to take a callback as a parameter (in this case param3). Now when we invoke the function we can pass in any function we want as a an argument and it will run as if they were made for eachother! didnt have to change my variables at all! so long as the params are in the right place (which only mattered for mary poppins) they are good to go! really cool */
+        /* ref to ['./readme.md' question 2] Down here is where the callbacks kick in. We have made the callback function on top "return callback(a, b)", and set our "consume" function to take a callback as a parameter (in this case param3). Now when we invoke the function we can pass in any function we want as a an argument and it will run as if they were made for eachother! didnt have to change my variables at all! so long as the params are in the right place (which only mattered for mary poppins) they are good to go! really cool */
   
   console.log(consume(2, 2, add)); // 4  /* this is where the callbacks kick in CHECK */
   console.log(consume(10, 16, multiply)); // 160 YES
